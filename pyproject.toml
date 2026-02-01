@@ -1,0 +1,12 @@
+[project]
+name = "jaffle-poc"
+version = "0.1.0"
+description = "a PoC ingestion pipeline from the Jaffle API"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "dlt>=1.21.0",
+    "duckdb>=1.4.4",
+    "jupyter>=1.1.1",
+    "marimo>=0.19.6",
+]
