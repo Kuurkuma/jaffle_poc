@@ -4,7 +4,7 @@ This repo contains a Proof of Concept for an ingestion pipeline designed to extr
 
 The project is managed by the cool python package manager `uv`.
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 .
@@ -24,7 +24,7 @@ The project is managed by the cool python package manager `uv`.
 *   **Package Manager:** [uv](https://github.com/astral-sh/uv)
 *   **Development:** Jupyter Notebook
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Prerequisites
 Ensure you have **uv** installed.
@@ -47,50 +47,41 @@ mkdir .dlt
 touch .dlt/secrets.toml
 ```
 
-Edit `.dlt/secrets.toml` and add:
+Edit `.dlt/config.toml` and add:
 ```toml
-[sources.jaffle_source]
-base_url = "https://api.jaffleshop.com/v1"
+BASE_URL="https://jaffle-shop.dlthub.com/api/v1"
 ```
 
-## 🏃‍♂️ Usage
+## Usage
 
 ### Running the Pipeline
 The core logic resides in the Jupyter Notebook for this PoC phase to allow for interactive debugging and immediate data inspection.
 
-1.  Activate the virtual environment:
-    ```bash
-    source .venv/bin/activate
-    ```
-2.  Launch Jupyter:
-    ```bash
-    jupyter notebook
-    ```
-3.  Open `jaffle_pipeline.ipynb` and run all cells.
+ Open `jaffle_pipeline.ipynb` and run all cells.
 
 ### Inspecting the Data
 Once the pipeline runs, a `jaffle_pipeline.duckdb` file is created.
 
 **Option A: Via dataframe directly in the notebook**
 
-See [!]
+See [Notebook here](jaffle_pipeline.ipynb)
 
 **Option B: Via CLI**
 Query the database directly:
 ```bash
 duckdb ./jaffle_pipeline.duckdb 
-SELECT * FROM raw_data_20260202061312.customers LIMIT 10;
+SELECT * FROM raw_data_20260202082816.customers LIMIT 10;
 ```
+*NOTE: if different, adjust the dataset name to `raw_data_YOUR_NUMBER_HERE`*
 
-## 📊 Data Pipeline Details
+## Data Pipeline Details
 
 *   **Source:** Jaffle Shop API
-*   **Destination:** DuckDB (`raw` schema)
+*   **Destination:** DuckDB (`raw_data_20260202082816` schema)
 *   **Extraction Strategy:**
-    *   **Incremental (Append):** Used for `orders` and `items` (transactional data).
-    *   **Merge (Upsert):** Used for `customers`, `products`, `stores`, `supplies` (dimension data, handles updates based on Primary Key).
+    *   **Incremental (Append):** Used for `customers`, `orders` and `items` (transactional data).
+    *   **Merge (Upsert):** Used for `products`, `stores`, `supplies` (dimension data, handles updates based on Primary Key).
 *   **Pagination:** Automated using `HeaderLinkPaginator` via `dlt`'s `RESTClient`.
 
 ## 📝 Documentation
 See [api_doc.md](./api_doc.md) for a detailed breakdown of the API endpoints, rate limits, and schema mapping decisions.
-```
