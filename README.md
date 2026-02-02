@@ -1,6 +1,6 @@
 # Jaffle Shop API Ingestion PoC
 
-This repository contains a Proof of Concept (PoC) ELT pipeline designed to extract data from the Jaffle Shop REST API and load it into a local **DuckDB** instance using **dlt** (Data Load Tool).
+This repo contains a Proof of Concept for an ingestion pipeline designed to extract data from the Jaffle Shop REST API and load it into a local **DuckDB** instance using **dlt** (Data Load Tool).
 
 The project is managed by the cool python package manager `uv`.
 
@@ -29,11 +29,10 @@ The project is managed by the cool python package manager `uv`.
 ### 1. Prerequisites
 Ensure you have **uv** installed.
 
-
 ### 2. Installation
 Clone the repo and sync dependencies:
 ```bash
-git clone <repo-url>
+git clone https://github.com/Kuurkuma/jaffle_poc.git
 cd jaffle_poc
 uv sync
 ```
