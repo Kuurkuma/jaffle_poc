@@ -18,18 +18,10 @@ https://jaffle-shop.dlthub.com/docs
 *   Auth Method: no auth method (public APi)
 *   Pagination:
     Pagination is controlled via the page query parameter (see page).
-    Each page returns a fixed number of results (see page_size).
+    Each page returns a fixed number of results (page_size=100).
     If more results are available, the response will include a Link header with rel="next" that points to the next page.
-*   Rate Limits: (e.g., 100 requests/minute? 429 Retry-After header?)
+*   Rate Limits: not indicated. potentially the github is defined by the host github .
 
-**2. Endpoints & Schema Strategy**
+**2. Endpoints & Schema**
 
-| Endpoint Path | Destination Table | Sync Mode | Primary Key | Notes                         |
-| :--- | :--- | :--- | :--- | :---  |
-| `/customers`  | `customers`       |           |   `id`     | 2 keys: `id`, `name`.          |
-| `/orders`     | `orders`          |           |   `id`     | 3 keys: `id`, `order_id`, `sku`|  
-| `/items`      | `items`           |           | `item_id`  |                                |
-| `/products`   | `products`        |           | `sku`      | Small reference table.         |
-| `/supplies`   | `supplies`        |           | `id`       |                                |
-| `/stores`     | `stores`          |           | `id`       |"id", "name","opened_at","tax_rate"|
-| `/`
+see `jaffle_api_doc.json`
